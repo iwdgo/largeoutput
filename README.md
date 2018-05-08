@@ -10,6 +10,9 @@ If you need to output to a file, you might have to update your code.
 Piping `Stdout` to a file is easier. A helper to compare the file to a referenced file
 returns eventually an error usable by the `testing` package.
 
+The original code from `testing/example.go` is using unexported routines.
+It has been adapted to ordinary exercises.
+
 ## How to ?
 
 The HTML reference file is missing but the other ones are available.
