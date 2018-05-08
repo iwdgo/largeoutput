@@ -1,8 +1,14 @@
 # Testing when large output is expected
 
-Some ordinary exercises which are tested using intermediate files.
-The output is compared against a reference using a test helper which returns an error message.
-This error message conforms to testing package.
+An ordinary exercise may have a large output for which the easy `// Output:`
+becomes unreadable.
+
+In that case a convenient structure is an `Example` for a reduced set of data and
+a test and its benchmark for larger outputs.
+
+If you need to output to a file, you might have to update your code.
+Piping `Stdout` to a file is easier. A helper to compare the file to a referenced file
+returns eventually an error usable by the `testing` package.
 
 ## How to ?
 
