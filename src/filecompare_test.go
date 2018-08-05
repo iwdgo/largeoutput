@@ -58,7 +58,6 @@ func FileCompare(ref, prod, testName string) error {
 			}
 		}
 
-		// Discarding the 7th byte
 		if !bytes.Equal(b1, b2) {
 			return errors.New(fmt.Sprintf(testName+" : got %q, want %q at %d", b1, b2, index))
 			break
