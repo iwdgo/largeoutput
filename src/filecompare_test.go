@@ -30,17 +30,17 @@ func OutputDir() {
  Stdout must be piped to the produced file.
 */
 
-func FileCompare(ref, prod, testName string) error {
-	rfile, err := os.Open(ref)
+func FileCompare(want, got, testName string) error {
+	rfile, err := os.Open(want)
 	defer rfile.Close()
 	if err != nil {
-		return errors.New(fmt.Sprintf("Reference file %s open failed with %v", ref, err))
+		return errors.New(fmt.Sprintf("Reference file %s open failed with %v", want, err))
 	}
 
-	pfile, err := os.Open(prod)
+	pfile, err := os.Open(got)
 	defer pfile.Close()
 	if err != nil {
-		return errors.New(fmt.Sprintf("Profuced file %s open failed with %v", prod, err))
+		return errors.New(fmt.Sprintf("Profuced file %s open failed with %v", got, err))
 	}
 
 	b1, b2 := make([]byte, 1), make([]byte, 1)

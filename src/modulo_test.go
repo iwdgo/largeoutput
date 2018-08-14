@@ -80,14 +80,15 @@ func TestModulo37(t *testing.T) {
 		pfile.Write(out)
 		pfile.Close()
 
-		fail := FileCompare("moduloref.txt", prodFileName, "modulo print")
+		fail := FileCompare("modulowant.txt", prodFileName, "modulo print")
 		if fail != nil {
 			t.Errorf("%s : %v\n", dstr, fail)
 		}
 
 		ok = fail == nil && err == nil
 	}()
-	/* */
+
+	ok = ok // otherwise -vet=off is needed. Cf. https://github.com/golang/go/issues/25720
 	if err != nil {
 		t.Errorf("Opening pipe failed with %v", err)
 	}
@@ -144,7 +145,7 @@ func BenchmarkModulo37(b *testing.B) {
 		ok = err == nil
 	}()
 	/* */
-
+	ok = ok // otherwise -vet=off is needed. Cf. https://github.com/golang/go/issues/25720
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
 		modulo37()

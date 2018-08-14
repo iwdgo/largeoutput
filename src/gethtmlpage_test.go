@@ -26,10 +26,10 @@ func CreateFileFromString(fname string, content []byte) {
 /* go test -run=TestGetHTMLPage */
 func TestGetHTMLPage(t *testing.T) {
 	OutputDir()
-	pfileName := "pageread.html"
+	pfileName := "pagegot.html"
 	s := getHTMLPage()
 	CreateFileFromString(pfileName, s)
-	if err := FileCompare("pageref.html", pfileName, "change html page"); err != nil {
+	if err := FileCompare("pagewant.html", pfileName, "change html page"); err != nil {
 		t.Error(err) // Otherwise, no error is detected
 	}
 }
