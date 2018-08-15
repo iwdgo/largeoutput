@@ -39,8 +39,6 @@ func BufferToFile(fname string, content *bytes.Buffer) {
 	if err != nil {
 		panic(err)
 	}
-
-	//fmt.Println(getHTMLPage())
 }
 
 /* go test -run=TestGetHTMLPageString */
@@ -48,7 +46,7 @@ func TestGetHTMLPageString(t *testing.T) {
 	OutputDir()
 	pfileName := "pagegot.html"
 	CreateFileFromString(pfileName, getHTMLPage())
-	if err := FileCompare("pagewant.html", pfileName, "change html page"); err != nil {
+	if err := FileCompare("pagewant.html", pfileName, t.Name()); err != nil {
 		t.Error(err) // Otherwise, no error is detected
 	}
 }
@@ -66,7 +64,7 @@ func TestGetHTMLPageBuffer(t *testing.T) {
 	OutputDir()
 	pfileName := "pagegot.html"
 	BufferToFile(pfileName, bytes.NewBuffer(getHTMLPage()))
-	if err := FileCompare("pagewant.html", pfileName, "change html page"); err != nil {
+	if err := FileCompare("pagewant.html", pfileName, t.Name()); err != nil {
 		t.Error(err) // Otherwise, no error is detected
 	}
 }

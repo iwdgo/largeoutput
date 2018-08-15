@@ -12,12 +12,13 @@ and then save the contents of the page to a new local file, with all occurrences
 */
 
 const (
-	techName = "SAP"
-	myTech   = "MyTech"
+	techName  = "SAP"
+	myTech    = "MyTech"
+	myCountry = "belgique"
 )
 
 func getTechHomePage() []byte {
-	resp, err := http.Get("http://www." + techName + ".com/belgique/index.html")
+	resp, err := http.Get("http://www." + techName + ".com/" + myCountry + "/index.html")
 	if err != nil {
 		panic(err)
 	}
