@@ -2,77 +2,52 @@ package largeoutput
 
 import (
 	"testing"
-	//"bytes"
-	"bytes"
-	"os"
 )
 
-/* Buffer beats String easily
+/*
+File operation is the most consuming. One file less means half the time.
+
 goos: windows
 goarch: amd64
-BenchmarkGetHTMLPageString-4          10         322947190 ns/op
-BenchmarkGetHTMLPageBuffer-4          10         186943420 ns/op
+BenchmarkGetHTMLPageString-4                           1        1145923100 ns/op
+BenchmarkGetHTMLPageBuffer-4                           1        1030399200 ns/op
+BenchmarkGetHTMLPageBufferNoGotFile-4                  2         582395500 ns/op
 */
-func CreateFileFromString(fname string, content []byte) {
-	wfile, err := os.Create(fname)
-	defer wfile.Close()
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = wfile.Write(content)
-	if err != nil {
-		panic(err)
-	}
-
-	//fmt.Println(getHTMLPage())
-}
-
-func BufferToFile(fname string, content *bytes.Buffer) {
-	wfile, err := os.Create(fname)
-	defer wfile.Close()
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = wfile.Write(content.Bytes())
-	if err != nil {
-		panic(err)
-	}
-}
 
 /* go test -run=TestGetHTMLPageString */
 func TestGetHTMLPageString(t *testing.T) {
-	OutputDir()
-	pfileName := "pagegot.html"
-	CreateFileFromString(pfileName, getHTMLPage())
-	if err := FileCompare("pagewant.html", pfileName, t.Name()); err != nil {
-		t.Error(err) // Otherwise, no error is detected
-	}
+	GetHTMLPageString()
 }
 
 /* go test -bench=GetHTMLPageString */
 func BenchmarkGetHTMLPageString(b *testing.B) {
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
-		getHTMLPage()
+		GetHTMLPageString()
 	}
 }
 
 /* go test -run=TestGetHTMLPageBuffer */
 func TestGetHTMLPageBuffer(t *testing.T) {
-	OutputDir()
-	pfileName := "pagegot.html"
-	BufferToFile(pfileName, bytes.NewBuffer(getHTMLPage()))
-	if err := FileCompare("pagewant.html", pfileName, t.Name()); err != nil {
-		t.Error(err) // Otherwise, no error is detected
-	}
+	GetHTMLPageBuffer()
 }
 
 /* go test -bench=GetHTMLPageBuffer */
 func BenchmarkGetHTMLPageBuffer(b *testing.B) {
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
-		getHTMLPage()
+		GetHTMLPageBuffer()
+	}
+}
+
+func TestGetHTMLPageBufferNoGotFile(t *testing.T) {
+	GetHTMLPageBufferNoGotFile()
+}
+
+/* go test -bench=GetHTMLPageBuffer */
+func BenchmarkGetHTMLPageBufferNoGotFile(b *testing.B) {
+	// run the function b.N times
+	for n := 0; n < b.N; n++ {
+		GetHTMLPageBufferNoGotFile()
 	}
 }
