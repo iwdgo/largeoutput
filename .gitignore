@@ -3,5 +3,6 @@
 src/output/datawo7.bin
 src/output/modulobench.txt
 src/output/moduloprod.txt
-src/output/pageread.html
-src/output/pageref.html
+src/output/pagegot.html
+src/output/pagewant.html
+src/output/got_*
