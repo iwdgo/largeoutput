@@ -125,9 +125,9 @@ func BufferCompare(got *bytes.Buffer, want, caller string) error {
 		}
 
 		if !bytes.Equal(b1, b2) {
-			BufferToFile("got"+caller+".html", got)
+			BufferToFile("got_"+caller+".html", got)
 			return errors.New(fmt.Sprintf(caller+" : got %q, want %q at %d", b1, b2, index))
-			break
+			// break
 		}
 		index++
 	}
