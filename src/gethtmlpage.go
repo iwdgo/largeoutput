@@ -48,7 +48,7 @@ func GetHTMLPageString() error {
 	if funcname := strings.SplitAfter(filepath.Base(runtime.FuncForPC(i).Name()), "."); len(funcname) == 1 {
 		return fmt.Errorf("Func name not found")
 	} else {
-		return FileCompare("pagewant.html", pfileName, funcname[1]) // second element is the func name
+		return FileCompare(pfileName, "pagewant.html", funcname[1]) // second element is the func name
 	}
 }
 
@@ -61,7 +61,7 @@ func GetHTMLPageBuffer() error {
 	if funcname := strings.SplitAfter(filepath.Base(runtime.FuncForPC(i).Name()), "."); len(funcname) == 1 {
 		return fmt.Errorf("Func name not found")
 	} else {
-		return FileCompare("pagewant.html", pfileName, funcname[1]) // second element is the func name
+		return FileCompare(pfileName, "pagewant.html", funcname[1]) // second element is the func name
 	}
 }
 

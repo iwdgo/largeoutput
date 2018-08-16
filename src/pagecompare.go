@@ -58,7 +58,7 @@ func OutputDir() {
  Stdout must be piped to the produced file.
 */
 
-func FileCompare(want, got, caller string) error {
+func FileCompare(got, want, caller string) error {
 	rfile, err := os.Open(want)
 	defer rfile.Close()
 	if err != nil {
@@ -134,7 +134,7 @@ func BufferCompare(got *bytes.Buffer, want, caller string) error {
 	// EOF on reference file has been reached, let us check the produced file
 	_, err = got.Read(b2)
 	if err != io.EOF { // If EOF produced file is too short
-		BufferToFile("got"+caller+".html", got)
+		BufferToFile("got_"+caller+".html", got)
 		rfileInfo, _ := rfile.Stat()
 		return errors.New(fmt.Sprintf(caller+" : produced file is too short by %d", rfileInfo.Size()-int64(index)))
 	}

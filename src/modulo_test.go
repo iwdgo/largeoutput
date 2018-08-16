@@ -80,7 +80,7 @@ func TestModulo37(t *testing.T) {
 		pfile.Write(out)
 		pfile.Close()
 
-		fail := FileCompare("modulowant.txt", prodFileName, "modulo print")
+		fail := FileCompare(prodFileName, "modulowant.txt", "modulo print")
 		if fail != nil {
 			t.Errorf("%s : %v\n", dstr, fail)
 		}
