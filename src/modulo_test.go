@@ -28,7 +28,7 @@ func TestModulo37(t *testing.T) {
 	modulo37(pfile) // t.Log is using stdErr and looks confusing
 	pfile.Close()
 
-	FileCompare(t,"moduloref.txt",prodFileName,"modulo print")
+	FileCompare(t,"moduloref.txt",prodFileName)
 }
 */
 
@@ -80,12 +80,11 @@ func TestModulo37(t *testing.T) {
 		pfile.Write(out)
 		pfile.Close()
 
-		fail := FileCompare(prodFileName, "modulowant.txt", "modulo print")
-		if fail != nil {
-			t.Errorf("%s : %v\n", dstr, fail)
+		if err = FileCompare(prodFileName, "modulowant.txt"); err != nil {
+			t.Errorf("%s : %v\n", dstr, err)
 		}
 
-		ok = fail == nil && err == nil
+		ok = err == nil
 	}()
 
 	ok = ok // otherwise -vet=off is needed. Cf. https://github.com/golang/go/issues/25720

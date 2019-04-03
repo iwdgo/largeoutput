@@ -7,6 +7,8 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"runtime"
+	"strings"
 )
 
 func CreateFileFromString(fname string, content []byte) {
@@ -57,18 +59,17 @@ func OutputDir() {
  This routine compares produced output to a reference file and returns an error.
  Stdout must be piped to the produced file.
 */
-
-func FileCompare(got, want, caller string) error {
+func FileCompare(got, want string) error {
 	rfile, err := os.Open(want)
 	defer rfile.Close()
 	if err != nil {
-		return errors.New(fmt.Sprintf("Reference file %s open failed with %v", want, err))
+		return errors.New(fmt.Sprintf("want file %s open failed with %v", want, err))
 	}
 
 	pfile, err := os.Open(got)
 	defer pfile.Close()
 	if err != nil {
-		return errors.New(fmt.Sprintf("Profuced file %s open failed with %v", got, err))
+		return errors.New(fmt.Sprintf("got file %s open failed with %v", got, err))
 	}
 
 	b1, b2 := make([]byte, 1), make([]byte, 1)
@@ -81,32 +82,39 @@ func FileCompare(got, want, caller string) error {
 			}
 
 			_, err = pfile.Read(b2)
-			if err != nil { // If EOF produced file is too short
+			if err != nil { // If EOF is returned, file is too short
 				return err
 			}
 		}
 
 		if !bytes.Equal(b1, b2) {
-			return errors.New(fmt.Sprintf(caller+" : got %q, want %q at %d", b1, b2, index))
+			return errors.New(fmt.Sprintf("got %q, want %q at %d", b1, b2, index))
 			break
 		}
 		index++
 	}
 	// EOF on reference file has been reached, let us check the produced file
 	_, err = pfile.Read(b2)
-	if err != io.EOF { // If EOF produced file is too short
+	if err != io.EOF { // If EOF is returned, file is too short
 		rfileInfo, _ := rfile.Stat()
-		return errors.New(fmt.Sprintf(caller+" : produced file is too short by %d", rfileInfo.Size()-int64(index)))
+		return errors.New(fmt.Sprintf("got file is too short by %d", rfileInfo.Size()-int64(index)))
 	}
 	return nil
 }
 
 // Buffer is compared to file. If an error occurs, got file is created, otherwise nil is returned.
-func BufferCompare(got *bytes.Buffer, want, caller string) error {
+func BufferCompare(got *bytes.Buffer, want string) error {
 	rfile, err := os.Open(want)
 	defer rfile.Close()
 	if err != nil {
 		return errors.New(fmt.Sprintf("Reference file %s open failed with %v", want, err))
+	}
+
+	// Finding caller name here to locate appropriate file
+	i, _, _, _ := runtime.Caller(1)
+	funcname := strings.SplitAfter(filepath.Base(runtime.FuncForPC(i).Name()), ".")
+	if len(funcname) == 1 {
+		return fmt.Errorf("Func name not found")
 	}
 
 	b1, b2 := make([]byte, 1), make([]byte, 1)
@@ -125,8 +133,8 @@ func BufferCompare(got *bytes.Buffer, want, caller string) error {
 		}
 
 		if !bytes.Equal(b1, b2) {
-			BufferToFile("got_"+caller+".html", got)
-			return errors.New(fmt.Sprintf(caller+" : got %q, want %q at %d", b1, b2, index))
+			BufferToFile(fmt.Sprintf("got_%s .html", funcname[1]), got)
+			return errors.New(fmt.Sprintf("got %q, want %q at %d", b1, b2, index))
 			// break
 		}
 		index++
@@ -134,9 +142,9 @@ func BufferCompare(got *bytes.Buffer, want, caller string) error {
 	// EOF on reference file has been reached, let us check the produced file
 	_, err = got.Read(b2)
 	if err != io.EOF { // If EOF produced file is too short
-		BufferToFile("got_"+caller+".html", got)
+		BufferToFile(fmt.Sprintf("got_%s .html", funcname[1]), got)
 		rfileInfo, _ := rfile.Stat()
-		return errors.New(fmt.Sprintf(caller+" : produced file is too short by %d", rfileInfo.Size()-int64(index)))
+		return errors.New(fmt.Sprintf("got file is too short by %d", rfileInfo.Size()-int64(index)))
 	}
 	return nil
 }

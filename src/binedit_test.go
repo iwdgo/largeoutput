@@ -12,8 +12,7 @@ func TestBinEdit(t *testing.T) {
 		t.Errorf("bin edition failed \n")
 	}
 
-	err := FileCompare("datawant.bin", "datawo7.bin", "bin file edition")
-	if err != nil {
+	if err := FileCompare("datawant.bin", "datawo7.bin"); err != nil {
 		t.Errorf("%v", err)
 	}
 }
