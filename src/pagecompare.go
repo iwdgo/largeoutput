@@ -104,8 +104,8 @@ func FileCompare(got, want string) error {
 
 // Buffer is compared to file. If an error occurs, got file is created, otherwise nil is returned.
 func BufferCompare(got *bytes.Buffer, want string) error {
-	rfile, err := os.Open(want)
-	defer rfile.Close()
+	wantf, err := os.Open(want)
+	defer wantf.Close()
 	if err != nil {
 		return errors.New(fmt.Sprintf("Reference file %s open failed with %v", want, err))
 	}
@@ -120,7 +120,7 @@ func BufferCompare(got *bytes.Buffer, want string) error {
 	b1, b2 := make([]byte, 1), make([]byte, 1)
 	index := 0          // Index in file to locate error
 	for err != io.EOF { // Until the end of the file
-		_, err = rfile.Read(b1)
+		_, err = wantf.Read(b1)
 		if err != io.EOF { // While not EOF, read the other file too
 			if err != nil {
 				return err
@@ -143,8 +143,8 @@ func BufferCompare(got *bytes.Buffer, want string) error {
 	_, err = got.Read(b2)
 	if err != io.EOF { // If EOF produced file is too short
 		BufferToFile(fmt.Sprintf("got_%s .html", funcname[1]), got)
-		rfileInfo, _ := rfile.Stat()
-		return errors.New(fmt.Sprintf("got file is too short by %d", rfileInfo.Size()-int64(index)))
+		info, _ := wantf.Stat()
+		return errors.New(fmt.Sprintf("got file is too short by %d", info.Size()-int64(index)))
 	}
 	return nil
 }
