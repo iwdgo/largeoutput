@@ -3,6 +3,7 @@ package largeoutput
 import (
 	"bytes"
 	"fmt"
+	"github.com/iwdgo/testingfiles"
 	"io"
 	"os"
 	"testing"
@@ -28,12 +29,12 @@ func TestModulo37(t *testing.T) {
 	modulo37(pfile) // t.Log is using stdErr and looks confusing
 	pfile.Close()
 
-	FileCompare(t,"moduloref.txt",prodFileName)
+	testingfiles.FileCompare(t,"moduloref.txt",prodFileName)
 }
 */
 
 func TestModulo37(t *testing.T) {
-	OutputDir()
+	testingfiles.OutputDir("output")
 	prodFileName := "moduloprod.txt"
 	pfile, err := os.Create(prodFileName)
 	if err != nil {
@@ -80,7 +81,7 @@ func TestModulo37(t *testing.T) {
 		pfile.Write(out)
 		pfile.Close()
 
-		if err = FileCompare(prodFileName, "modulowant.txt"); err != nil {
+		if err = testingfiles.FileCompare(prodFileName, "modulowant.txt"); err != nil {
 			t.Errorf("%s : %v\n", dstr, err)
 		}
 

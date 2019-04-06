@@ -3,6 +3,7 @@ package largeoutput
 import (
 	"bytes"
 	"fmt"
+	"github.com/iwdgo/testingfiles"
 	"io/ioutil"
 	"net/http"
 	"path/filepath"
@@ -41,37 +42,37 @@ func getHTMLPage() []byte {
 
 /* for benchmark purposes, the test is reduced to call the comparison */
 func GetHTMLPageString() error {
-	OutputDir()
+	testingfiles.OutputDir("output")
 	pfileName := "pagegot.html"
-	CreateFileFromString(pfileName, getHTMLPage())
+	testingfiles.StringToFile(pfileName, getHTMLPage())
 	i, _, _, _ := runtime.Caller(0)
 	if funcname := strings.SplitAfter(filepath.Base(runtime.FuncForPC(i).Name()), "."); len(funcname) == 1 {
 		return fmt.Errorf("Func name not found")
 	} else {
-		return FileCompare(pfileName, "pagewant.html") // second element is the func name
+		return testingfiles.FileCompare(pfileName, "pagewant.html") // second element is the func name
 	}
 }
 
 /* Buffer to file, iso String. Then comparing files. No real gain */
 func GetHTMLPageBuffer() error {
-	OutputDir()
+	testingfiles.OutputDir("output")
 	pfileName := "pagegot.html"
-	BufferToFile(pfileName, bytes.NewBuffer(getHTMLPage()))
+	testingfiles.BufferToFile(pfileName, bytes.NewBuffer(getHTMLPage()))
 	i, _, _, _ := runtime.Caller(0)
 	if funcname := strings.SplitAfter(filepath.Base(runtime.FuncForPC(i).Name()), "."); len(funcname) == 1 {
 		return fmt.Errorf("Func name not found")
 	} else {
-		return FileCompare(pfileName, "pagewant.html") // second element is the func name
+		return testingfiles.FileCompare(pfileName, "pagewant.html") // second element is the func name
 	}
 }
 
 /* No got file. Comparing buffer to want file. Got file created only if different */
 func GetHTMLPageBufferNoGotFile() error {
-	OutputDir() // for want file
+	testingfiles.OutputDir("output") // for want file
 	i, _, _, _ := runtime.Caller(0)
 	if funcname := strings.SplitAfter(filepath.Base(runtime.FuncForPC(i).Name()), "."); len(funcname) == 1 {
 		return fmt.Errorf("Func name not found")
 	} else {
-		return BufferCompare(bytes.NewBuffer(getHTMLPage()), "pagewant.html")
+		return testingfiles.BufferCompare(bytes.NewBuffer(getHTMLPage()), "pagewant.html")
 	}
 }

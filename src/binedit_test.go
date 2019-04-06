@@ -1,18 +1,19 @@
 package largeoutput
 
 import (
+	"github.com/iwdgo/testingfiles"
 	"testing"
 )
 
 func TestBinEdit(t *testing.T) {
 
-	OutputDir()
+	testingfiles.OutputDir("output")
 
 	if !binEdit() {
 		t.Errorf("bin edition failed \n")
 	}
 
-	if err := FileCompare("datawant.bin", "datawo7.bin"); err != nil {
+	if err := testingfiles.FileCompare("datawant.bin", "datawo7.bin"); err != nil {
 		t.Errorf("%v", err)
 	}
 }
