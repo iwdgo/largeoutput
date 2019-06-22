@@ -1,3 +1,4 @@
+// The first run of GetHTMLPage will fail and you can rename pagegot.html into pagewant.html
 package largeoutput
 
 import (

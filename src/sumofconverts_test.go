@@ -14,7 +14,6 @@ goarch: amd64
 BenchmarkSumOfConverts-4          500000              2539 ns/op
 BenchmarkSumOfConvertsR-4         500000              2493 ns/op
 PASS
-ok      _/c_/Users/Costa/Documents/Google/CloudSDK/sandbox/src/largeoutput        10.114s
 */
 func ExampleSumOfConverts() {
 	fmt.Println(sumOfConverts()) // fmt is required to check // Output:

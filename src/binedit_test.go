@@ -18,9 +18,6 @@ func TestBinEdit(t *testing.T) {
 	}
 }
 
-/*
-Benchmarking file operations should be examined
-*/
 func BenchmarkBinEdit(b *testing.B) {
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {

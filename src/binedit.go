@@ -1,13 +1,11 @@
+// You have a huge file named "data.bin" that does not fit in memory, code a program that deletes every 7th byte of it.
+// Truncate can be used to change its size.
 package largeoutput
 
 import (
 	"io"
 	"os"
 )
-
-/* You have a huge file named "data.bin" that does not fit in memory, code a program that deletes every 7th byte of it.
-Truncate can be used to change its size.
-*/
 
 func binEdit() bool {
 

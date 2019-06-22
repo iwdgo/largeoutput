@@ -28,3 +28,7 @@ tests will panic.
 
 It is not needed to use the related test helper because a benchmark runs the related test
 first. The test sets the working directory correctly.
+
+## Testing package
+
+This package contains testing of module github.com/iwdgo/testingfiles

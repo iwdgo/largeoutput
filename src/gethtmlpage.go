@@ -1,3 +1,6 @@
+// Write a program to download the contents of http://www.{tech}.com/belgique/index.html
+// (the {tech} homepage for Belgium), and then save the contents of the page to a new local file,
+// with all occurrences of "{tech}" replaced by "MyTech".
 package largeoutput
 
 import (
@@ -10,11 +13,6 @@ import (
 	"runtime"
 	"strings"
 )
-
-/*
-Write a program to download the contents of http://www.{tech}.com/belgique/index.html (the {tech} homepage for Belgium),
-and then save the contents of the page to a new local file, with all occurrences of "{tech}" replaced by "MyTech".
-*/
 
 const (
 	techName  = "SAP"
@@ -36,11 +34,11 @@ func getTechHomePage() []byte {
 }
 
 func getHTMLPage() []byte {
-	//It is assume that replacement is case sensitive
+	// It is assumed that replacement is case sensitive
 	return bytes.Replace(getTechHomePage(), []byte(techName), []byte(myTech), -1)
 }
 
-/* for benchmark purposes, the test is reduced to call the comparison */
+//  Benchmark is about the file comparison
 func GetHTMLPageString() error {
 	testingfiles.OutputDir("output")
 	pfileName := "pagegot.html"
