@@ -1,5 +1,4 @@
-// You have a huge file named "data.bin" that does not fit in memory, code a program that deletes every 7th byte of it.
-// Truncate can be used to change its size.
+// Package largeoutput contains ordinary exercises.
 package largeoutput
 
 import (
@@ -7,15 +6,17 @@ import (
 	"os"
 )
 
+// binEdit handles a huge file named "data.bin" that does not fit in memory. It deletes every 7th byte of it.
 func binEdit() bool {
 
-	//File in running directory
+	// File in running directory
 	file, err := os.Open("data.bin")
 	defer file.Close()
 	if err != nil {
 		panic(err)
 	}
 
+	// File is overwritten when it exists.
 	wfile, err := os.Create("datawo7.bin")
 	defer wfile.Close()
 	if err != nil {

@@ -1,6 +1,4 @@
-// Write a function that takes a list of strings and returns the sum of the list items
-// that represents an integer (skipping the other items)
-
+// Package largeoutput contains various
 package largeoutput
 
 import (
@@ -30,14 +28,14 @@ var listofstrings = []string{
 	"Very doubtful",
 }
 
-func sumOfConverts() int64 {
-	var sum int64
-	sum = 0
+// sumOfConverts takes a list of strings and returns the sum of the list items
+// that represents an integer (skipping the other items)
+func sumOfConverts() (sum int64) {
 	for _, a := range listofstrings {
-		i, err := strconv.ParseInt(a, 10, 64) // 0 returns an int for some reason
-		if err == nil {
-			sum = sum + i
+		// 0 returns an int for some reason
+		if i, err := strconv.ParseInt(a, 10, 64); err == nil {
+			sum += i
 		}
 	}
-	return sum
+	return
 }

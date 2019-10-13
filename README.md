@@ -1,4 +1,10 @@
-# Testing when large output is expected
+# Some ordinary exercises
+
+- Editing a large file.
+- Outputing numbers following some rules.
+- Converting a set of strings which contains numbers.
+
+## Handling output of using a file.
 
 An ordinary exercise may have a large output for which the easy `// Output:`
 becomes unreadable.
@@ -12,12 +18,6 @@ returns eventually an error usable by the `testing` package.
 
 The original code from `testing/example.go` is using unexported routines.
 It has been adapted to ordinary exercises.
-
-## How to ?
-
-The HTML reference file is missing but the other ones are available.
-You can edit samples or add your own.
-You can use the ordinary `go test` and `go test -bench=.`
 
 ## Data files
 

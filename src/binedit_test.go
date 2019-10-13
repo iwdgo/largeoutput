@@ -21,6 +21,8 @@ func TestBinEdit(t *testing.T) {
 func BenchmarkBinEdit(b *testing.B) {
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
-		binEdit()
+		if !binEdit() {
+			b.Fatalf("bin edit failed on %d run", n)
+		}
 	}
 }

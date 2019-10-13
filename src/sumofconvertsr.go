@@ -1,5 +1,4 @@
-// Write a recursive version of the previous function
-// (or an iterative version if you already did a recursive version).
+// Package largeoutput contains ordinary exercises.
 package largeoutput
 
 import (
@@ -17,6 +16,7 @@ func stringstoint(restofstrings []string) int64 {
 	}
 }
 
+// sumOfConvertsR is the recursive version of sumOfConverts.
 func sumOfConvertsR() int64 {
 	return stringstoint(listofstrings)
 }

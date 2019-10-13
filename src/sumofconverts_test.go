@@ -1,24 +1,20 @@
 package largeoutput
 
 import (
-	"fmt"
 	"testing"
 )
 
 /*
-Recursive is marginally better
+No significant difference between recursive and non-recursive.
 
-go test -bench=SumOfConverts
+go version go1.13.1 windows/amd64
+>go test -bench=SumOfConverts
 goos: windows
 goarch: amd64
-BenchmarkSumOfConverts-4          500000              2539 ns/op
-BenchmarkSumOfConvertsR-4         500000              2493 ns/op
+BenchmarkSumOfConverts-4          333518              3419 ns/op
+BenchmarkSumOfConvertsR-4         343140              3489 ns/op
 PASS
 */
-func ExampleSumOfConverts() {
-	fmt.Println(sumOfConverts()) // fmt is required to check // Output:
-	// Output: 14
-}
 
 func TestSumOfConverts(t *testing.T) {
 	got := sumOfConverts()
