@@ -1,4 +1,4 @@
-package largeoutput
+package modulo37
 
 import (
 	"fmt"

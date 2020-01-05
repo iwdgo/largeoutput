@@ -1,4 +1,4 @@
-package largeoutput
+package sumofconverts
 
 import (
 	"testing"

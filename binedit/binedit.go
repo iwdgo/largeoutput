@@ -1,5 +1,5 @@
 // Package largeoutput contains ordinary exercises.
-package largeoutput
+package binedit
 
 import (
 	"io"
@@ -11,17 +11,17 @@ func binEdit() bool {
 
 	// File in running directory
 	file, err := os.Open("data.bin")
-	defer file.Close()
 	if err != nil {
 		panic(err)
 	}
+	defer file.Close()
 
 	// File is overwritten when it exists.
 	wfile, err := os.Create("datawo7.bin")
-	defer wfile.Close()
 	if err != nil {
 		panic(err)
 	}
+	defer wfile.Close()
 
 	b1 := make([]byte, 1)
 

@@ -1,5 +1,5 @@
 // Package largeoutput contains various
-package largeoutput
+package sumofconverts
 
 import (
 	"strconv"

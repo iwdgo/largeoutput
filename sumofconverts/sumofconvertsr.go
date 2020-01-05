@@ -1,5 +1,5 @@
 // Package largeoutput contains ordinary exercises.
-package largeoutput
+package sumofconverts
 
 import (
 	"strconv"
