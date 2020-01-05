@@ -88,8 +88,7 @@ func TestModulo37(t *testing.T) {
 		ok = err == nil
 	}()
 
-	ok = ok // otherwise -vet=off is needed. Cf. https://github.com/golang/go/issues/25720
-	if err != nil {
+	if !ok {
 		t.Errorf("Opening pipe failed with %v", err)
 	}
 	modulo37()
@@ -125,7 +124,6 @@ func BenchmarkModulo37(b *testing.B) {
 		outC <- buf.Bytes() //.String()
 	}()
 
-	ok := true
 	/* Clean up in a deferred call so we can recover if the example panics. */
 	defer func() {
 		err := recover()
@@ -140,12 +138,8 @@ func BenchmarkModulo37(b *testing.B) {
 		out := <-outC
 		pfile.Write(out)
 		pfile.Close()
-
-		/* File content is not tested during benchmark */
-		ok = err == nil
 	}()
-	/* */
-	ok = ok // otherwise -vet=off is needed. Cf. https://github.com/golang/go/issues/25720
+
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
 		modulo37()
