@@ -9,7 +9,7 @@ before_install:
   - go vet ./...
 
 script:
-  - go test -race -coverprofile=coverage.txt -covermode=atomic
+  - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
   - go test -bench=. ./sumofconverts
 
 after_success:
