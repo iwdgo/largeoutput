@@ -11,10 +11,10 @@ func TestBinEdit(t *testing.T) {
 	testingfiles.OutputDir("output")
 
 	if !binEdit() {
-		t.Errorf("bin edition failed \n")
+		t.Errorf("bin edition failed\n")
 	}
 
-	if err := testingfiles.FileCompare("datawant.bin", "datawo7.bin"); err != nil {
+	if err := testingfiles.FileCompare("datawo7.bin", "datawant.bin"); err != nil {
 		t.Errorf("%v", err)
 	}
 }
@@ -41,13 +41,13 @@ func TestBinEditFileFailure(t *testing.T) {
 	}
 	defer func() {
 		if err := recover(); err != nil {
-			//!os.IsPermission(err.(error)) {
+			// !os.IsPermission(err.(error)) { // Read-only directory is unavailable on Windows
 			t.Errorf("Recovering failed with %v", err)
 		}
 	}()
 
 	if !binEdit() {
-		t.Errorf("bin edition failed \n")
+		t.Errorf("bin edition failed\n")
 	}
 
 	if err := testingfiles.FileCompare("datawant.bin", "datawo7.bin"); err != nil {
