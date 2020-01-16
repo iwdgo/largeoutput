@@ -9,6 +9,8 @@ environment:
 stack: go 1.12
 
 before_test:
+  - set GO111MODULE=auto
+  - go get ./...
   - go vet ./...
 
 test_script:
