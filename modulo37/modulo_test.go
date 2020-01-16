@@ -12,11 +12,35 @@ import (
 
 /*
 
+About testing
+
 Example would be like Test...
 Log format, if used, and includes date, time...
 pfile := iotest.NewWriteLogger(t.Name(),os.Stdout) and no valid reference can be created
 
-You can conceive your test to pass the produced file and all output is then fmt.Fprintf(pfile,...)
+Go test // Output: does not make a difference between one crlf and several.
+
+To handle output, you can write the func with a io.Writer parameter like below but it requires to update or to write
+code with test in mind. This is not required by Go.
+
+func modulo37(f io.Writer) {
+	for i := 1; i < 100; i++ {
+		if i%3 == 0 {
+			fmt.Fprint(f,"Open")
+		}
+		if i%7 == 0 {
+			fmt.Fprint(f,"Source")
+		}
+		if (i%3 != 0) && (i%7 != 0) {
+			fmt.Fprintf(f,"%d\n",i)
+		} else {
+			fmt.Fprintln(f)
+		}
+	}
+}
+
+You can conceive your test to pass the produced file and all output of the func is like fmt.Fprintf(pfile,...)
+
 func TestModulo37(t *testing.T) {
 	prodFileName := "moduloprod.txt"
 	pfile, err := os.Create(prodFileName)
@@ -31,8 +55,10 @@ func TestModulo37(t *testing.T) {
 
 	testingfiles.FileCompare(t,"moduloref.txt",prodFileName)
 }
+
 */
 
+// Test is piping output to a file which is checked against reference.
 func TestModulo37(t *testing.T) {
 	testingfiles.OutputDir("output")
 	prodFileName := "moduloprod.txt"

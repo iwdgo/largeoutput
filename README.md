@@ -9,9 +9,18 @@
 
 # Some ordinary exercises
 
-- Editing a large file.
-- Outputing numbers following some rules.
-- Converting a set of strings which contains numbers.
+- Editing a huge file named "data.bin" that does not fit in memory and delete every 7th byte of it.
+
+- Outputting numbers following some rules. The module outputs sequentially the integers from 1 to 99
+ but on some conditions prints a string instead. Rules are:
+  - when the integer is a multiple of 3 print “Open” instead of the number,
+  - when it is a multiple of 7 print “Source” instead of the number,
+  - when it is a multiple of both 3 and 7 print “OpenSource” instead of the number.
+
+- Converting a set of strings which contains numbers. It returns the sum of the list items and skips others.
+A recursive and non-recursive version are benchmarked.
+
+`go get github.com/iwdgo/largeouput/<module>>`
 
 ## Handling output when using a file.
 
@@ -35,5 +44,4 @@ The directory is not created but its existence is checked.
 If the working directory (not the temp, nor the executing) is unavailable,
 tests will panic.
 
-It is not needed to use the related test helper because a benchmark runs the related test
-first. The test sets the working directory correctly.
+The output directory is created by the tests that alway run before the benchmarking.

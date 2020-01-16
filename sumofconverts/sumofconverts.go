@@ -1,4 +1,6 @@
-// Package largeoutput contains various
+// Package sumOfConverts takes a list of strings and returns the sum of the list items
+// that represents an integer (skipping the other items)
+// A recursive and non-recursive version are benchmarked.
 package sumofconverts
 
 import (
@@ -28,8 +30,6 @@ var listofstrings = []string{
 	"Very doubtful",
 }
 
-// sumOfConverts takes a list of strings and returns the sum of the list items
-// that represents an integer (skipping the other items)
 func sumOfConverts() (sum int64) {
 	for _, a := range listofstrings {
 		// 0 returns an int for some reason

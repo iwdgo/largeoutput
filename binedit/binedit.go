@@ -1,4 +1,4 @@
-// Package largeoutput contains ordinary exercises.
+// Package binEdit handles a huge file named "data.bin" that does not fit in memory. It deletes every 7th byte of it.
 package binedit
 
 import (
@@ -6,7 +6,6 @@ import (
 	"os"
 )
 
-// binEdit handles a huge file named "data.bin" that does not fit in memory. It deletes every 7th byte of it.
 func binEdit() bool {
 
 	// File in running directory

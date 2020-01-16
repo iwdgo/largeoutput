@@ -1,4 +1,3 @@
-// Package largeoutput contains ordinary exercises.
 package sumofconverts
 
 import (
