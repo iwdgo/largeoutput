@@ -5,14 +5,17 @@ clone_folder: c:\gopath\src\github.com\iwdgo\largeoutput
 
 environment:
   GOPATH: c:\gopath
+  GO111MODULE: on
 
 stack: go 1.12
 
 before_test:
-  - set GO111MODULE=auto
   - go get ./...
   - go vet ./...
 
 test_script:
   - go test -cover -race ./...
   - go test -bench=. ./sumofconverts
+
+build_script:
+  - go build ./...
