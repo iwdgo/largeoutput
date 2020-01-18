@@ -11,8 +11,8 @@ environment:
 stack: go 1.12
 
 before_test:
-  - go get ./...
-  - go mod download github.com/iwdgo/testingfiles
+  # go mod cannot be used outside modules
+  - go get github.com/iwdgo/testingfiles
   - go vet ./...
 
 test_script:

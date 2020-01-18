@@ -10,8 +10,9 @@ test_task:
   modules_cache:
     folder: $GOPATH/pkg/mod
   tests_script:
-   - go get ./...
-   - go mod download github.com/iwdgo/testingfiles
+   # go mod cannot be used outside modules
+   - go version
+   - go get github.com/iwdgo/testingfiles
    - go vet ./...
    - go test -cover ./...
    - go test -bench=. ./sumofconverts
