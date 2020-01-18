@@ -7,20 +7,21 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/eimlas99romrrro0?svg=true)](https://ci.appveyor.com/project/iWdGo/largeoutput)
 ![Build status](https://github.com/iwdgo/largeoutput/workflows/Go/badge.svg)
 
-# Some ordinary exercises
+# Some ordinary exercises in modules
 
+`go get github.com/iwdgo/largeouput/binedit`
 - Editing a huge file named "data.bin" that does not fit in memory and delete every 7th byte of it.
 
+`go get github.com/iwdgo/largeouput/modulo37`
 - Outputting numbers following some rules. The module outputs sequentially the integers from 1 to 99
  but on some conditions prints a string instead. Rules are:
   - when the integer is a multiple of 3 print “Open” instead of the number,
   - when it is a multiple of 7 print “Source” instead of the number,
   - when it is a multiple of both 3 and 7 print “OpenSource” instead of the number.
 
+`go get github.com/iwdgo/largeouput/sumofconverts`
 - Converting a set of strings which contains numbers. It returns the sum of the list items and skips others.
 A recursive and non-recursive version are benchmarked.
-
-`go get github.com/iwdgo/largeouput/<module>>`
 
 ## Handling output when using a file.
 

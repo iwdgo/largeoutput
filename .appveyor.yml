@@ -5,7 +5,8 @@ clone_folder: c:\gopath\src\github.com\iwdgo\largeoutput
 
 environment:
   GOPATH: c:\gopath
-  GO111MODULE: on
+  # Using auto allows to run go command from a directory containing module
+  GO111MODULE: auto
 
 stack: go 1.12
 

@@ -3,7 +3,8 @@ container:
 
 env:
   GOPROXY: https://proxy.golang.org
-  GO111MODULE: on
+  # Using auto allows to run go command from a directory containing module
+  GO111MODULE: auto
 
 test_task:
   modules_cache:
