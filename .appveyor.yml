@@ -8,7 +8,7 @@ environment:
   # Using auto allows to run go command from a directory containing module
   GO111MODULE: auto
 
-stack: go 1.12
+stack: go 1.14.1
 
 before_test:
   # go mod cannot be used outside modules

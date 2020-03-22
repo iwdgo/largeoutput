@@ -3,31 +3,44 @@ package binedit
 import (
 	"github.com/iwdgo/testingfiles"
 	"os"
+	"path"
 	"testing"
 )
 
 func TestBinEdit(t *testing.T) {
+	pa := path.Join(d, ff)
+	// deferred func is always executed even when no panic occurred
+	defer func() {
+		if err1 := os.RemoveAll(pa); err1 != nil {
+			t.Logf("clean up failed: %v", err1)
+		}
+		if err := recover(); err != nil {
+			if !os.IsPermission(err.(error)) {
+				t.Errorf("%v\n", err)
+			}
+			return
+		}
+		// No Panic
+	}()
 
-	testingfiles.OutputDir("output")
-
+	testingfiles.OutputDir(d)
 	if !binEdit() {
 		t.Errorf("bin edition failed\n")
 	}
-
-	if err := testingfiles.FileCompare("datawo7.bin", "datawant.bin"); err != nil {
+	if err := testingfiles.FileCompare(ft, "datawant.bin"); err != nil {
 		t.Errorf("%v", err)
 	}
+	os.RemoveAll(pa)
 }
 
-func TestBinEditFileFailure(t *testing.T) {
-
-	testingfiles.OutputDir("output")
+func TestBinEdit_readonly(t *testing.T) {
+	testingfiles.OutputDir(d)
 	// Set read only
-	err := os.Remove("datawo7.bin")
+	err := os.Remove(ft)
 	if err != nil {
 		t.Error(err)
 	}
-	fd, err := os.Create("datawo7.bin")
+	fd, err := os.Create(ft)
 	if err != nil {
 		t.Error(err)
 	}
@@ -35,22 +48,31 @@ func TestBinEditFileFailure(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	err = os.Chmod("datawo7.bin", 400)
+	var p os.FileMode = 0400
+	err = os.Chmod(ft, p)
 	if err != nil {
 		t.Error(err)
 	}
 	defer func() {
-		if err := recover(); err != nil {
-			// !os.IsPermission(err.(error)) { // Read-only directory is unavailable on Windows
-			t.Errorf("Recovering failed with %v", err)
+		if err1 := os.RemoveAll(d); err1 != nil {
+			t.Logf("clean up failed: %v", err1)
 		}
+		if err := recover(); err != nil {
+			if !os.IsPermission(err.(error)) {
+				t.Errorf("%v\n", err)
+			}
+			return
+		}
+		// No panic
 	}()
 
 	if !binEdit() {
-		t.Errorf("bin edition failed\n")
+		// because of panic-ing, this code must be unreachable
+		t.Errorf("bin didn't panic")
 	}
 
-	if err := testingfiles.FileCompare("datawant.bin", "datawo7.bin"); err != nil {
+	t.Logf("No panic and no error for perm %v", p)
+	if err := testingfiles.FileCompare(ft, "datawant.bin"); err != nil {
 		t.Errorf("%v", err)
 	}
 }

@@ -6,17 +6,23 @@ import (
 	"os"
 )
 
+const (
+	d  = "output"
+	ff = "data.bin"
+	ft = "datawo7.bin"
+)
+
 func binEdit() bool {
 
 	// File in running directory
-	file, err := os.Open("data.bin")
+	file, err := os.Open(ff)
 	if err != nil {
 		panic(err)
 	}
 	defer file.Close()
 
 	// File is overwritten when it exists.
-	wfile, err := os.Create("datawo7.bin")
+	wfile, err := os.Create(ft)
 	if err != nil {
 		panic(err)
 	}
