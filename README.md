@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/github.com/iWdGo/largeoutput?status.svg)](https://godoc.org/github.com/iWdGo/largeoutput)
+[![GoDoc](https://pkg.go.dev/github.com/iwdgo/largeoutput?status.svg)](https://pkg.go.dev/github.com/iwdgo/largeoutput)
 [![Go Report Card](https://goreportcard.com/badge/github.com/iwdgo/largeoutput)](https://goreportcard.com/report/github.com/iwdgo/largeoutput)
 [![codecov](https://codecov.io/gh/iWdGo/largeoutput/branch/master/graph/badge.svg)](https://codecov.io/gh/iWdGo/largeoutput)
 
@@ -28,7 +28,7 @@ A recursive and non-recursive version are benchmarked.
 An ordinary exercise may have a large output for which the easy `// Output:`
 becomes unreadable.
 
-In that case a convenient structure is an `Example` for a reduced set of data and
+In that case a convenient structure is an `Example` for a reduced set of data, and
 a test and its benchmark for larger outputs.
 
 If you need to output to a file, you might have to update your code.
@@ -40,8 +40,8 @@ It has been adapted to ordinary exercises.
 
 ## Data files
 
-The `/output` subdirectory avoids to have the data files mixed with source code.
-The directory is not created but its existence is checked.
+The `/output` subdirectory avoids having the data files mixed with source code.
+Module checks the existence of the directory but does not create it.
 If the working directory (not the temp, nor the executing) is unavailable,
 tests will panic.
 
