@@ -1,4 +1,4 @@
-// Package binEdit handles a huge file named "data.bin" that does not fit in memory. It deletes every 7th byte of it.
+// Package binedit handles a huge file named "data.bin" that does not fit in memory. It deletes every 7th byte of it.
 package binedit
 
 import (

@@ -1,4 +1,4 @@
-// Package sumOfConverts takes a list of strings and returns the sum of the list items
+// Package sumofconverts takes a list of strings and returns the sum of the list items
 // that represents an integer (skipping the other items)
 // A recursive and non-recursive version are benchmarked.
 package sumofconverts
