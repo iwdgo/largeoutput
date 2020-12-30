@@ -1,4 +1,4 @@
-[![Go Reference](https://pkg.go.dev/badge/iwdgo/largeoutput.svg)](https://pkg.go.dev/iwdgo/largeoutput)
+[![Go Reference](https://pkg.go.dev/badge/iwdgo/largeoutput.svg)](https://pkg.go.dev/github.com/iwdgo/largeoutput)
 [![Go Report Card](https://goreportcard.com/badge/github.com/iwdgo/largeoutput)](https://goreportcard.com/report/github.com/iwdgo/largeoutput)
 [![codecov](https://codecov.io/gh/iWdGo/largeoutput/branch/master/graph/badge.svg)](https://codecov.io/gh/iWdGo/largeoutput)
 
