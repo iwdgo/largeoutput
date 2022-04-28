@@ -30,7 +30,7 @@ func TestBinEdit(t *testing.T) {
 	if err := testingfiles.FileCompare(ft, "datawant.bin"); err != nil {
 		t.Errorf("%v", err)
 	}
-	os.RemoveAll(pa)
+	_ = os.RemoveAll(pa)
 }
 
 func TestBinEdit_readonly(t *testing.T) {

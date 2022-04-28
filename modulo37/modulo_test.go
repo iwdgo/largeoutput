@@ -64,14 +64,14 @@ func TestModulo37(t *testing.T) {
 	prodFileName := "moduloprod.txt"
 	pfile, err := os.Create(prodFileName)
 	if err != nil {
-		t.Errorf("produced file creation %s failed with %v", prodFileName, err)
+		t.Errorf("%v", err)
 	}
 
 	// Capture stdout.
 	stdout := os.Stdout
 	r, w, err := os.Pipe()
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "modulo : piping failed with ", err)
+		_, _ = fmt.Fprintln(os.Stderr, "modulo : piping failed with ", err)
 		os.Exit(1)
 	}
 	os.Stdout = w
@@ -79,9 +79,9 @@ func TestModulo37(t *testing.T) {
 	go func() {
 		var buf bytes.Buffer
 		_, err := io.Copy(&buf, r)
-		r.Close()
+		_ = r.Close()
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "testing: copying pipe: %v\n", err)
+			_, _ = fmt.Fprintf(os.Stderr, "testing: copying pipe: %v\n", err)
 			os.Exit(1)
 		}
 		outC <- buf.Bytes() //.String()
@@ -101,11 +101,11 @@ func TestModulo37(t *testing.T) {
 		dstr := fmt.Sprintf("%.4fs", time.Since(start).Seconds())
 
 		// Close pipe, restore stdout, get output.
-		w.Close()
+		_ = w.Close()
 		os.Stdout = stdout // Restoring Stdout
 		out := <-outC
-		pfile.Write(out)
-		pfile.Close()
+		_, _ = pfile.Write(out)
+		_ = pfile.Close()
 
 		if err = testingfiles.FileCompare(prodFileName, "modulowant.txt"); err != nil {
 			t.Errorf("%s : %v\n", dstr, err)
@@ -127,14 +127,14 @@ func BenchmarkModulo37(b *testing.B) {
 	prodFileName := "modulobench.txt"
 	pfile, err := os.Create(prodFileName)
 	if err != nil {
-		b.Errorf("produced file creation %s failed with %v", prodFileName, err)
+		b.Errorf("%v", err)
 	}
 
 	// Capture stdout.
 	stdout := os.Stdout
 	r, w, err := os.Pipe()
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "modulo : piping failed with ", err)
+		_, _ = fmt.Fprintln(os.Stderr, "modulo : piping failed with ", err)
 		os.Exit(1)
 	}
 	os.Stdout = w
@@ -142,9 +142,9 @@ func BenchmarkModulo37(b *testing.B) {
 	go func() {
 		var buf bytes.Buffer
 		_, err := io.Copy(&buf, r)
-		r.Close()
+		_ = r.Close()
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "testing: copying pipe: %v\n", err)
+			_, _ = fmt.Fprintf(os.Stderr, "testing: copying pipe: %v\n", err)
 			os.Exit(1)
 		}
 		outC <- buf.Bytes() //.String()
@@ -159,11 +159,11 @@ func BenchmarkModulo37(b *testing.B) {
 		}
 
 		// Close pipe, restore stdout, get output.
-		w.Close()
+		_ = w.Close()
 		os.Stdout = stdout // Restoring Stdout
 		out := <-outC
-		pfile.Write(out)
-		pfile.Close()
+		_, _ = pfile.Write(out)
+		_ = pfile.Close()
 	}()
 
 	// run the function b.N times
