@@ -67,7 +67,7 @@ func TestBinEdit_readonly(t *testing.T) {
 	}()
 
 	if !binEdit() {
-		// because of panic-ing, this code must be unreachable
+		// Because of panic-ing, this code must be unreachable
 		t.Errorf("bin didn't panic")
 	}
 
@@ -79,7 +79,7 @@ func TestBinEdit_readonly(t *testing.T) {
 
 func BenchmarkBinEdit(b *testing.B) {
 	b.Skip("permission denied")
-	// run the function b.N times
+	// Run the function b.N times
 	for n := 0; n < b.N; n++ {
 		if !binEdit() {
 			b.Fatalf("bin edit failed on %d run", n)
