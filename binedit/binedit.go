@@ -21,14 +21,24 @@ func binEdit() bool {
 	if err != nil {
 		panic(err)
 	}
-	defer file.Close()
+	defer func() {
+		err = file.Close()
+		if err != nil {
+			panic(err)
+		}
+	}()
 
 	// File is overwritten when it exists.
 	wfile, err := os.Create(ft)
 	if err != nil {
 		panic(err)
 	}
-	defer wfile.Close()
+	defer func() {
+		err = file.Close()
+		if err != nil {
+			panic(err)
+		}
+	}()
 
 	b1 := make([]byte, 1)
 	for err != io.EOF { // Until the end of the file
