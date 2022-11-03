@@ -30,6 +30,8 @@ var listofstrings = []string{
 	"Very doubtful",
 }
 
+const total = 14
+
 func sumOfConverts() (sum int64) {
 	for _, a := range listofstrings {
 		// 0 returns an int for some reason

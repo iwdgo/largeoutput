@@ -18,7 +18,7 @@ PASS
 
 func TestSumOfConverts(t *testing.T) {
 	got := sumOfConverts()
-	want := int64(14)
+	want := int64(total)
 	if got != want {
 		t.Errorf("sum of converts : got %d, want %d", got, want)
 	}
@@ -35,7 +35,7 @@ func BenchmarkSumOfConverts(b *testing.B) {
 // Recursive
 func TestSumOfConvertsR(t *testing.T) {
 	got := sumOfConvertsR()
-	want := int64(14)
+	want := int64(total)
 	if got != want {
 		t.Errorf("sum of converts recursive : got %d, want %d", got, want)
 	}
