@@ -34,7 +34,10 @@ func TestBinEdit(t *testing.T) {
 	} else {
 		t.Fatalf("output size: got %v, want %v", si, fo.Size())
 	}
-	_ = os.RemoveAll(ft)
+	err = os.RemoveAll(ft)
+	if err != nil {
+		t.Log(err)
+	}
 }
 
 func TestBinEdit_readonly(t *testing.T) {
