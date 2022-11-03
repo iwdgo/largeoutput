@@ -13,7 +13,6 @@ jobs:
         with:
           go-version: 1.13
           check-latest: true
-          cache: true
           cache-dependency-path: modulo37/go.sum
 
       - name: Vet
