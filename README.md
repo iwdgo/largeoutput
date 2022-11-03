@@ -13,7 +13,7 @@
 
 Produce of a copy of a file named "data.bin" that does not fit in memory, while deleting every seventh byte.
 
-## Module37
+## Modulo37
 
 Output numbers following some rules. The module outputs sequentially the integers from 1 to 99
  but on some conditions prints a string instead. Implemented rules are:   
@@ -21,24 +21,22 @@ Output numbers following some rules. The module outputs sequentially the integer
   - when it is a multiple of 7 print “Source” instead of the number,
   - when it is a multiple of both 3 and 7 print “OpenSource” instead of the number.
 
-## Sumofconverts
+## Sum of converts
 
 Convert a set of strings which contains numbers. It returns the sum of the list items and skips others.
 A recursive and non-recursive version are benchmarked.
 
-## Testing of modulo37
+# Testing
 
 An ordinary exercise may have a large output for which the easy `// Output:`
-becomes unreadable.
+becomes unreadable. In this case, output of reduced set of data to a file for which content
+can be evaluated is more convenient. It is usable even without access to the original code.
 
-In this case a convenient structure is an `Example` for a reduced set of data, and
-a test and its benchmark for larger outputs.
+Piping `Stdout` to a file is easier. A helper to compare the file to a reference file.
+Comparison is done using module [github.com/iwdgo/testingfiles](https://github.com/iwdgo/testingfiles) which
+returns errors usable by the `testing` package.
 
-If you need to output to a file, you might have to update your code.
-Piping `Stdout` to a file is easier. A helper to compare the file to a referenced file
-returns eventually an error usable by the `testing` package.
-
-The original code is from the commit history of `golang.go/src/testing/example.go` was using
+The original code for piping is from the commit history of `golang.go/src/testing/example.go` was using
 unexported routines. It is adapted to these cases.
 
 ## Start
