@@ -13,7 +13,7 @@ func TestBinEdit(t *testing.T) {
 		}
 	}()
 
-	// Sets working directory
+	// Set working directory
 	testingfiles.OutputDir(d)
 	if !binEdit() {
 		t.Errorf("bin edition failed\n")
