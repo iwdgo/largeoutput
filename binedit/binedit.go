@@ -3,6 +3,7 @@
 package binedit
 
 import (
+	"fmt"
 	"io"
 	"os"
 )
@@ -25,7 +26,7 @@ func binEdit() bool {
 	defer func() {
 		err = file.Close()
 		if err != nil {
-			println(err)
+			fmt.Println(err)
 		}
 	}()
 
@@ -35,9 +36,9 @@ func binEdit() bool {
 		panic(err)
 	}
 	defer func() {
-		err = file.Close()
+		err = wfile.Close()
 		if err != nil {
-			println(err)
+			fmt.Println(err)
 		}
 	}()
 
