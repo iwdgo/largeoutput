@@ -7,17 +7,19 @@ import (
 /*
 No significant difference between recursive and non-recursive.
 
-go version go1.13.1 windows/amd64
->go test -bench=SumOfConverts
 goos: windows
 goarch: amd64
-BenchmarkSumOfConverts-4          333518              3419 ns/op
-BenchmarkSumOfConvertsR-4         343140              3489 ns/op
+pkg: github.com/iwdgo/largeoutput/sumofconverts
+cpu: Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz
+BenchmarkSumOfConverts-4        60551074                94.29 ns/op
+BenchmarkSumOfConvertsR-4       67506522                90.81 ns/op
+BenchmarkSumOfConvertsRPtr-4    65597427                89.98 ns/op
 PASS
+ok      github.com/iwdgo/largeoutput/sumofconverts      18.090s
 */
 
 func TestSumOfConverts(t *testing.T) {
-	got := sumOfConverts()
+	got := SumOfConverts(listofstrings)
 	want := int64(total)
 	if got != want {
 		t.Errorf("sum of converts : got %d, want %d", got, want)
@@ -28,13 +30,13 @@ func TestSumOfConverts(t *testing.T) {
 func BenchmarkSumOfConverts(b *testing.B) {
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
-		sumOfConverts()
+		SumOfConverts(listofstrings)
 	}
 }
 
 // Recursive
 func TestSumOfConvertsR(t *testing.T) {
-	got := sumOfConvertsR()
+	got := SumOfConvertsR(listofstrings)
 	want := int64(total)
 	if got != want {
 		t.Errorf("got %d, want %d", got, want)
@@ -43,12 +45,12 @@ func TestSumOfConvertsR(t *testing.T) {
 
 func BenchmarkSumOfConvertsR(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		sumOfConvertsR()
+		SumOfConvertsR(listofstrings)
 	}
 }
 
 func TestSumOfConvertsRPtr(t *testing.T) {
-	got := sumOfConvertsRPtr()
+	got := SumOfConvertsRPtr(&listofstrings)
 	want := int64(total)
 	if got != want {
 		t.Errorf("got %d, want %d", got, want)
@@ -57,6 +59,6 @@ func TestSumOfConvertsRPtr(t *testing.T) {
 
 func BenchmarkSumOfConvertsRPtr(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		sumOfConvertsRPtr()
+		SumOfConvertsRPtr(&listofstrings)
 	}
 }

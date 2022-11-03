@@ -32,7 +32,7 @@ var listofstrings = []string{
 
 const total = 14
 
-func sumOfConverts() (sum int64) {
+func SumOfConverts(listofstrings []string) (sum int64) {
 	for _, a := range listofstrings {
 		// 0 returns an int for some reason
 		if i, err := strconv.ParseInt(a, 10, 64); err == nil {
@@ -43,37 +43,27 @@ func sumOfConverts() (sum int64) {
 }
 
 // Using recursion
-func stringstoint(restofstrings []string) int64 {
+func SumOfConvertsR(restofstrings []string) int64 {
 	i, err := strconv.ParseInt(restofstrings[0], 10, 64)
 	if err == nil {
-		return i + stringstoint(restofstrings[1:])
+		return i + SumOfConvertsR(restofstrings[1:])
 	}
 	if len(restofstrings) == 1 {
 		return 0
 	}
-	return stringstoint(restofstrings[1:])
-}
-
-// sumOfConvertsR uses recursion.
-func sumOfConvertsR() int64 {
-	return stringstoint(listofstrings)
+	return SumOfConvertsR(restofstrings[1:])
 }
 
 // Using recursion and a pointer
-func stringstointPtr(restofstrings *[]string) int64 {
+func SumOfConvertsRPtr(restofstrings *[]string) int64 {
 	i, err := strconv.ParseInt((*restofstrings)[0], 10, 64)
 	if err == nil {
 		*restofstrings = (*restofstrings)[1:]
-		return i + stringstointPtr(restofstrings)
+		return i + SumOfConvertsRPtr(restofstrings)
 	}
 	if len(*restofstrings) == 1 {
 		return 0
 	}
 	*restofstrings = (*restofstrings)[1:]
-	return stringstointPtr(restofstrings)
-}
-
-// sumOfConvertsRPtr is recursive and uses a pointer to pass the argument.
-func sumOfConvertsRPtr() int64 {
-	return stringstointPtr(&listofstrings)
+	return SumOfConvertsRPtr(restofstrings)
 }
