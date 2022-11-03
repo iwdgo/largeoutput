@@ -21,6 +21,19 @@ func TestBinEdit(t *testing.T) {
 	if err := testingfiles.FileCompare(ft, "datawant.bin"); err != nil {
 		t.Error(err)
 	}
+	fi, err := os.Stat(ff)
+	if err != nil {
+		t.Fatal(err)
+	}
+	fo, err := os.Stat(ft)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if si := fi.Size() - (fi.Size() / 7); si == fo.Size() {
+		t.Logf("%d bytes removed from %d = %d", fi.Size()/7, fi.Size(), fo.Size())
+	} else {
+		t.Fatalf("output size: got %v, want %v", si, fo.Size())
+	}
 	_ = os.RemoveAll(ft)
 }
 
