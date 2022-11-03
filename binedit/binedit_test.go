@@ -7,7 +7,6 @@ import (
 )
 
 func TestBinEdit(t *testing.T) {
-	// deferred func is always executed even when no panic occurred
 	defer func() {
 		if err1 := os.RemoveAll(ft); err1 != nil {
 			t.Logf("clean up failed: %v", err1)
@@ -21,6 +20,7 @@ func TestBinEdit(t *testing.T) {
 		// No Panic
 	}()
 
+	// Sets working directory
 	testingfiles.OutputDir(d)
 	if !binEdit() {
 		t.Errorf("bin edition failed\n")
