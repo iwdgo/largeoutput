@@ -19,7 +19,7 @@ func TestBinEdit(t *testing.T) {
 		t.Errorf("bin edition failed\n")
 	}
 	if err := testingfiles.FileCompare(ft, "datawant.bin"); err != nil {
-		t.Errorf("%v", err)
+		t.Error(err)
 	}
 	_ = os.RemoveAll(ft)
 }
