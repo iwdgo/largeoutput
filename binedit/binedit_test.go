@@ -3,15 +3,13 @@ package binedit
 import (
 	"github.com/iwdgo/testingfiles"
 	"os"
-	"path"
 	"testing"
 )
 
 func TestBinEdit(t *testing.T) {
-	pa := path.Join(d, ff)
 	// deferred func is always executed even when no panic occurred
 	defer func() {
-		if err1 := os.RemoveAll(pa); err1 != nil {
+		if err1 := os.RemoveAll(ft); err1 != nil {
 			t.Logf("clean up failed: %v", err1)
 		}
 		if err := recover(); err != nil {
@@ -30,7 +28,7 @@ func TestBinEdit(t *testing.T) {
 	if err := testingfiles.FileCompare(ft, "datawant.bin"); err != nil {
 		t.Errorf("%v", err)
 	}
-	_ = os.RemoveAll(pa)
+	_ = os.RemoveAll(ft)
 }
 
 func TestBinEdit_readonly(t *testing.T) {
