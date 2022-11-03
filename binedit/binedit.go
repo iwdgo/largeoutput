@@ -24,7 +24,7 @@ func binEdit() bool {
 	defer func() {
 		err = file.Close()
 		if err != nil {
-			panic(err)
+			println(err)
 		}
 	}()
 
@@ -36,7 +36,7 @@ func binEdit() bool {
 	defer func() {
 		err = file.Close()
 		if err != nil {
-			panic(err)
+			println(err)
 		}
 	}()
 
