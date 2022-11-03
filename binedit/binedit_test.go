@@ -64,6 +64,11 @@ func TestBinEdit_readonly(t *testing.T) {
 		if err := recover(); err != nil {
 			t.Log(err)
 		}
+		err = os.RemoveAll(ft)
+		if err != nil {
+			t.Log(err)
+			t.Logf("%s might be read-only. Remove manually.", ft)
+		}
 	}()
 
 	if !binEdit() {
