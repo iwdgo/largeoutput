@@ -42,19 +42,17 @@ func TestBinEdit(t *testing.T) {
 
 func TestBinEdit_readonly(t *testing.T) {
 	testingfiles.OutputDir(d)
-	// Set read only
-	err := os.Remove(ft)
-	if err != nil {
-		t.Error(err)
-	}
+	// Discard error file could be absent
+	_ = os.Remove(ft)
 	fd, err := os.Create(ft)
 	if err != nil {
-		t.Error(err)
+		t.Fatal(err)
 	}
 	err = fd.Close()
 	if err != nil {
 		t.Error(err)
 	}
+	// Set output file read only
 	var p os.FileMode = 0400
 	err = os.Chmod(ft, p)
 	if err != nil {
