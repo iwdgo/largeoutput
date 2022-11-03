@@ -8,13 +8,14 @@ import (
 )
 
 const (
-	d  = "output"
-	ff = "data.bin"
-	ft = "datawo7.bin"
+	d  = "output"      // working directory
+	ff = "data.bin"    // source file
+	ft = "datawo7.bin" // edited file
+	r  = 7             // order of byte to remove
 )
 
-// binEdit returns true all operations completed until the last byte.
-// It any operation failed, it panics.
+// binEdit returns true when all operations completed until the last byte.
+// If any operation but closing a file fails, it panics.
 func binEdit() bool {
 	// File in running directory
 	file, err := os.Open(ff)
@@ -41,8 +42,8 @@ func binEdit() bool {
 	}()
 
 	b1 := make([]byte, 1)
-	for err != io.EOF { // Until the end of the file
-		for i := 1; i < 7; i++ {
+	for err != io.EOF {
+		for i := 1; i < r; i++ {
 			_, err = file.Read(b1)
 			if err != io.EOF {
 				if err != nil {
@@ -54,7 +55,7 @@ func binEdit() bool {
 				}
 			}
 		}
-		// Discarding the 7th byte
+		// Discarding one byte
 		_, err = file.Read(b1)
 		if err != io.EOF {
 			if err != nil {

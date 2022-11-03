@@ -29,7 +29,7 @@ func TestBinEdit(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if si := fi.Size() - (fi.Size() / 7); si == fo.Size() {
+	if si := fi.Size() - (fi.Size() / r); si == fo.Size() {
 		t.Logf("%d bytes removed from %d = %d", fi.Size()/7, fi.Size(), fo.Size())
 	} else {
 		t.Fatalf("output size: got %v, want %v", si, fo.Size())
@@ -78,13 +78,12 @@ func TestBinEdit_readonly(t *testing.T) {
 
 	t.Logf("No panic and no error for perm %v", p)
 	if err := testingfiles.FileCompare(ft, "datawant.bin"); err != nil {
-		t.Errorf("%v", err)
+		t.Error(err)
 	}
 }
 
 func BenchmarkBinEdit(b *testing.B) {
 	b.Skip("permission denied")
-	// Run the function b.N times
 	for n := 0; n < b.N; n++ {
 		if !binEdit() {
 			b.Fatalf("bin edit failed on %d run", n)
