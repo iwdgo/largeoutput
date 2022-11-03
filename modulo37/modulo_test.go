@@ -18,10 +18,10 @@ Example would be like Test...
 Log format, if used, and includes date, time...
 pfile := iotest.NewWriteLogger(t.Name(),os.Stdout) and no valid reference can be created
 
-Go test // Output: does not make a difference between one crlf and several.
+Go test // Output: is awkward considering the size of the output.
 
-To handle output, you can write the func with a io.Writer parameter like below but it requires to update or to write
-code with test in mind. This is not required by Go.
+To handle output, you can write the func with a io.Writer parameter like below, but it requires to update or to write
+code with test in mind.
 
 func modulo37(f io.Writer) {
 	for i := 1; i < 100; i++ {
@@ -39,22 +39,8 @@ func modulo37(f io.Writer) {
 	}
 }
 
-You can conceive your test to pass the produced file and all output of the func is like fmt.Fprintf(pfile,...)
-
-func TestModulo37(t *testing.T) {
-	prodFileName := "moduloprod.txt"
-	pfile, err := os.Create(prodFileName)
-	defer pfile.Close()
-	if err != nil {
-		t.Errorf("Produced file creation %s failed with %v",prodFileName,err)
-	}
-
-
-	modulo37(pfile) // t.Log is using stdErr and looks confusing
-	pfile.Close()
-
-	testingfiles.FileCompare(t,"moduloref.txt",prodFileName)
-}
+Without access to the source code, the output can be piped to a file.
+A reference file is used for comparison purposes.
 
 */
 
@@ -90,7 +76,7 @@ func TestModulo37(t *testing.T) {
 	start := time.Now()
 	ok := true
 
-	/* Clean up in a deferred call so we can recover if the example panics. */
+	// Clean up in a deferred call so we can recover if the example panics.
 	defer func() {
 		err := recover()
 		if err != nil { // If here because of panic
@@ -119,10 +105,8 @@ func TestModulo37(t *testing.T) {
 	}
 	modulo37()
 	// All output handling is in defer
-
 }
 
-/* */
 func BenchmarkModulo37(b *testing.B) {
 	prodFileName := "modulobench.txt"
 	pfile, err := os.Create(prodFileName)
