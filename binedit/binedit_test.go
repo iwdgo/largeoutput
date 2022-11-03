@@ -81,7 +81,6 @@ func TestBinEdit_readonly(t *testing.T) {
 }
 
 func BenchmarkBinEdit(b *testing.B) {
-	b.Skip("permission denied")
 	for n := 0; n < b.N; n++ {
 		if !binEdit() {
 			b.Fatalf("bin edit failed on %d run", n)
