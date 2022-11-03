@@ -42,6 +42,7 @@ func sumOfConverts() (sum int64) {
 	return
 }
 
+// Using recursion
 func stringstoint(restofstrings []string) int64 {
 	i, err := strconv.ParseInt(restofstrings[0], 10, 64)
 	if err == nil {
@@ -53,7 +54,26 @@ func stringstoint(restofstrings []string) int64 {
 	return stringstoint(restofstrings[1:])
 }
 
-// sumOfConvertsR is the recursive version of sumOfConverts.
+// sumOfConvertsR uses recursion.
 func sumOfConvertsR() int64 {
 	return stringstoint(listofstrings)
+}
+
+// Using recursion and a pointer
+func stringstointPtr(restofstrings *[]string) int64 {
+	i, err := strconv.ParseInt((*restofstrings)[0], 10, 64)
+	if err == nil {
+		*restofstrings = (*restofstrings)[1:]
+		return i + stringstointPtr(restofstrings)
+	}
+	if len(*restofstrings) == 1 {
+		return 0
+	}
+	*restofstrings = (*restofstrings)[1:]
+	return stringstointPtr(restofstrings)
+}
+
+// sumOfConvertsRPtr is recursive and uses a pointer to pass the argument.
+func sumOfConvertsRPtr() int64 {
+	return stringstointPtr(&listofstrings)
 }

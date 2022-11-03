@@ -37,12 +37,26 @@ func TestSumOfConvertsR(t *testing.T) {
 	got := sumOfConvertsR()
 	want := int64(total)
 	if got != want {
-		t.Errorf("sum of converts recursive : got %d, want %d", got, want)
+		t.Errorf("got %d, want %d", got, want)
 	}
 }
 
 func BenchmarkSumOfConvertsR(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		sumOfConvertsR()
+	}
+}
+
+func TestSumOfConvertsRPtr(t *testing.T) {
+	got := sumOfConvertsRPtr()
+	want := int64(total)
+	if got != want {
+		t.Errorf("got %d, want %d", got, want)
+	}
+}
+
+func BenchmarkSumOfConvertsRPtr(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		sumOfConvertsRPtr()
 	}
 }
