@@ -26,7 +26,6 @@ func TestSumOfConverts(t *testing.T) {
 	}
 }
 
-/* */
 func BenchmarkSumOfConverts(b *testing.B) {
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
@@ -34,7 +33,6 @@ func BenchmarkSumOfConverts(b *testing.B) {
 	}
 }
 
-// Recursive
 func TestSumOfConvertsR(t *testing.T) {
 	got := SumOfConvertsR(listofstrings)
 	want := int64(total)

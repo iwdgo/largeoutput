@@ -1,6 +1,8 @@
-// Package sumofconverts takes a list of strings and returns the sum of the list items
-// that represents an integer (skipping the other items)
-// A recursive and non-recursive version are benchmarked.
+/*
+	Package sumofconverts takes a list of strings and returns the sum of the items representing an integer.
+
+Recursive and non-recursive methods are implemented without significant changes in performance.
+*/
 package sumofconverts
 
 import (
@@ -32,6 +34,7 @@ var listofstrings = []string{
 
 const total = 14
 
+// SumOfConverts uses an ordinary for loop
 func SumOfConverts(listofstrings []string) (sum int64) {
 	for _, a := range listofstrings {
 		// 0 returns an int for some reason
@@ -42,7 +45,7 @@ func SumOfConverts(listofstrings []string) (sum int64) {
 	return
 }
 
-// Using recursion
+// SumOfConvertsR uses recursion passing the slice of strings
 func SumOfConvertsR(restofstrings []string) int64 {
 	i, err := strconv.ParseInt(restofstrings[0], 10, 64)
 	if err == nil {
@@ -54,7 +57,7 @@ func SumOfConvertsR(restofstrings []string) int64 {
 	return SumOfConvertsR(restofstrings[1:])
 }
 
-// Using recursion and a pointer
+// SumOfConvertsRPtr uses recursion passing a pointer to the slice of strings
 func SumOfConvertsRPtr(restofstrings *[]string) int64 {
 	i, err := strconv.ParseInt((*restofstrings)[0], 10, 64)
 	if err == nil {
