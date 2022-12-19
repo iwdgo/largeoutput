@@ -17,7 +17,7 @@ const (
 
 // binEdit returns true when all operations completed until the last byte.
 // If any operation but closing a file fails, it panics.
-func binEdit() bool {
+func BinEdit() bool {
 	// File in running directory
 	file, err := os.Open(ff)
 	if err != nil {

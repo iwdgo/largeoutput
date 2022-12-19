@@ -15,7 +15,7 @@ func TestBinEdit(t *testing.T) {
 
 	// Set working directory
 	testingfiles.OutputDir(d)
-	if !binEdit() {
+	if !BinEdit() {
 		t.Errorf("bin edition failed\n")
 	}
 	if err := testingfiles.FileCompare(ft, "datawant.bin"); err != nil {
@@ -69,7 +69,7 @@ func TestBinEdit_readonly(t *testing.T) {
 		}
 	}()
 
-	if !binEdit() {
+	if !BinEdit() {
 		// Because of panic-ing, this code must be unreachable
 		t.Errorf("bin didn't panic")
 	}
@@ -82,7 +82,7 @@ func TestBinEdit_readonly(t *testing.T) {
 
 func BenchmarkBinEdit(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		if !binEdit() {
+		if !BinEdit() {
 			b.Fatalf("bin edit failed on %d run", n)
 		}
 	}
