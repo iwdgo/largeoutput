@@ -103,7 +103,7 @@ func TestModulo37(t *testing.T) {
 	if !ok {
 		t.Errorf("Opening pipe failed with %v", err)
 	}
-	modulo37()
+	Modulo37()
 	// All output handling is in defer
 }
 
@@ -152,6 +152,6 @@ func BenchmarkModulo37(b *testing.B) {
 
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
-		modulo37()
+		Modulo37()
 	}
 }
