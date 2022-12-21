@@ -9,22 +9,14 @@
 
 # Some ordinary exercises using modules
 
-## Binedit
+- **Binedit** : Produce of a copy of a file named "data.bin" that does not fit in memory, while deleting every seventh byte.
 
-Produce of a copy of a file named "data.bin" that does not fit in memory, while deleting every seventh byte.
+- **Modulo37** : Output numbers following some rules. The module outputs sequentially the integers from 1 to 99
 
-## Modulo37
-
-Output numbers following some rules. The module outputs sequentially the integers from 1 to 99
- but on some conditions prints a string instead. Implemented rules are:   
-  - when the integer is a multiple of 3 print “Open” instead of the number,
-  - when it is a multiple of 7 print “Source” instead of the number,
-  - when it is a multiple of both 3 and 7 print “OpenSource” instead of the number.
-
-## Sum of converts
-
-Convert a set of strings which contains numbers. It returns the sum of the list items and skips others.
+- **Sumofconverts** : Convert a set of strings which contains numbers. It returns the sum of the list items and skips others.
 A recursive and non-recursive version are benchmarked.
+
+More documentation in each package.
 
 # Testing
 
@@ -36,12 +28,7 @@ Piping `Stdout` to a file is easier. A helper to compare the file to a reference
 Comparison is done using module [github.com/iwdgo/testingfiles](https://github.com/iwdgo/testingfiles) which
 returns errors usable by the `testing` package.
 
-The original code for piping is from the commit history of `golang.go/src/testing/example.go` was using
+The original code for piping output is from the commit history of `golang.go/src/testing/example.go` was using
 unexported routines. It is adapted to these cases.
 
-## Start
 
-Download with `go get github.com/iwdgo/largeouput/<module name>`,
-then `go test -v` for instance.
-
-These commands may change with [module](https://github.com/golang/go/wiki/Modules) configuration.

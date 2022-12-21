@@ -1,8 +1,5 @@
-/*
-	Package sumofconverts takes a list of strings and returns the sum of the items representing an integer.
-
-Recursive and non-recursive methods are implemented without significant changes in performance.
-*/
+// Package sumofconverts takes a list of strings and returns the sum of the items representing an integer.
+// Recursive and non-recursive methods are implemented without significant changes in performance.
 package sumofconverts
 
 import (

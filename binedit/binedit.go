@@ -15,7 +15,7 @@ const (
 	r  = 7             // order of byte to remove
 )
 
-// binEdit returns true when all operations completed until the last byte.
+// BinEdit returns true when all operations completed until the last byte.
 // If any operation but closing a file fails, it panics.
 func BinEdit() bool {
 	// File in running directory
