@@ -10,40 +10,6 @@ import (
 	"time"
 )
 
-/*
-
-About testing
-
-Example would be like Test...
-Log format, if used, and includes date, time...
-pfile := iotest.NewWriteLogger(t.Name(),os.Stdout) and no valid reference can be created
-
-Go test // Output: is awkward considering the size of the output.
-
-To handle output, you can write the func with a io.Writer parameter like below, but it requires to update or to write
-code with test in mind.
-
-func modulo37(f io.Writer) {
-	for i := 1; i < 100; i++ {
-		if i%3 == 0 {
-			fmt.Fprint(f,"Open")
-		}
-		if i%7 == 0 {
-			fmt.Fprint(f,"Source")
-		}
-		if (i%3 != 0) && (i%7 != 0) {
-			fmt.Fprintf(f,"%d\n",i)
-		} else {
-			fmt.Fprintln(f)
-		}
-	}
-}
-
-Without access to the source code, the output can be piped to a file.
-A reference file is used for comparison purposes.
-
-*/
-
 // Test is piping output to a file which is checked against reference.
 func TestModulo37(t *testing.T) {
 	testingfiles.OutputDir("output")
