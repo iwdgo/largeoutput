@@ -1,19 +1,37 @@
 container:
   image: golang:latest
 
-env:
-  GOPROXY: https://proxy.golang.org
-  # Using auto allows to run go command from a directory containing module
-  GO111MODULE: auto
-
 test_task:
-  modules_cache:
-    folder: $GOPATH/pkg/mod
   tests_script:
-   # go mod cannot be used outside modules
    - go version
    - go get github.com/iwdgo/testingfiles
-   - go vet ./...
-   - go test -cover -race ./...
-   - go test -bench=. ./...
-  build_script: go build ./...
+   # vet
+   - cd ./binedit
+   - go vet
+   - cd ../modulo37
+   - go vet
+   - cd ../sumofconverts
+   - go vet
+   # test
+   - cd ../binedit
+   - go test -cover -race
+   - cd ../modulo37
+   - go test -cover -race
+   - cd ../sumofconverts
+   - go test -cover -race
+   # bench
+   - cd ../binedit
+   - go test -bench=.
+   - cd ../modulo37
+   - go test -bench=.
+   - cd ../sumofconverts
+   - go test -bench=. -benchmem
+  build_script:
+    # build
+    - cd ./binedit
+    - go build
+    - cd ../modulo37
+    - go build
+    - cd ../sumofconverts
+    - go build
+
