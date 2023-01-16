@@ -18,16 +18,44 @@ jobs:
         run: go get github.com/iwdgo/testingfiles
 
       - name: Vet
-        run: go vet ./...
+        run: | 
+          cd ./binedit
+          go vet
+          cd ../modulo37
+          go vet
+          cd ../sumofconverts
+          go vet
 
       - name: Build
-        run: go build -v ./...
+        run: |
+          cd ./binedit
+          go build
+          cd ../modulo37
+          go build
+          cd ../sumofconverts
+          go build
 
       - name: Test
-        run: go test -cover -coverprofile=coverage.out -covermode=atomic -race ./...
+        run: |
+          mkdir coverage
+          cd ./binedit
+          go test -cover -coverprofile=../coverage/binedit.out -covermode=atomic -race
+          cd ../modulo37
+          go test -cover -coverprofile=../coverage/modulo.out -covermode=atomic -race
+          cd ../sumofconverts
+          go test -cover -coverprofile=../coverage/sumofconverts.out -covermode=atomic -race
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
+        with:
+          directory: ./coverage/
 
       - name: Benchmark
-        run: go test -bench=. ./...
+        run: |
+          cd ./binedit
+          go test -bench=.
+          cd ../modulo37
+          go test -bench=.
+          cd ../sumofconverts
+          go test -bench=. -benchmem
+
