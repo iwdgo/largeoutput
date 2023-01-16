@@ -2,6 +2,7 @@ language: go
 
 go:
   - 1.11.x
+  # TODO Fails as notation ./... is unusable
   - 1.x
 
 before_install:
