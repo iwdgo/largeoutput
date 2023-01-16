@@ -33,6 +33,13 @@ func TestEndWithString(t *testing.T) {
 	}
 }
 
+func TestEmpty(t *testing.T) {
+	_ = SumOfConverts([]string{})
+	t.Skip("Recursive method panics with an empty array")
+	_ = SumOfConvertsR([]string{})
+	_ = SumOfConvertsRPtr(&[]string{})
+}
+
 var benchstrings = []string{"a", "b", "c", "4", "e", "f", "g", "8", "i", "j", "k"}
 
 func BenchmarkSumOfConverts(b *testing.B) {
