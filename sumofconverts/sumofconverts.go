@@ -20,11 +20,11 @@ func SumOfConverts(listofstrings []string) (sum int64) {
 // SumOfConvertsR uses recursion passing the slice of strings.
 func SumOfConvertsR(restofstrings []string) int64 {
 	i, err := strconv.ParseInt(restofstrings[0], 10, 64)
+	if len(restofstrings) == 1 {
+		return i
+	}
 	if err == nil {
 		return i + SumOfConvertsR(restofstrings[1:])
-	}
-	if len(restofstrings) == 1 {
-		return 0
 	}
 	return SumOfConvertsR(restofstrings[1:])
 }
@@ -33,12 +33,12 @@ func SumOfConvertsR(restofstrings []string) int64 {
 // Benchmarking shows that is consumes about a tenth of the resources.
 func SumOfConvertsRPtr(restofstrings *[]string) int64 {
 	i, err := strconv.ParseInt((*restofstrings)[0], 10, 64)
+	if len(*restofstrings) == 1 {
+		return i // zero if item is not an int
+	}
 	if err == nil {
 		*restofstrings = (*restofstrings)[1:]
 		return i + SumOfConvertsRPtr(restofstrings)
-	}
-	if len(*restofstrings) == 1 {
-		return 0
 	}
 	*restofstrings = (*restofstrings)[1:]
 	return SumOfConvertsRPtr(restofstrings)
