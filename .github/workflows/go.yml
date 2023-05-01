@@ -15,13 +15,13 @@ jobs:
           check-latest: true
 
       - name: Go get dependencies
-        run: go get github.com/iwdgo/testingfiles
+        run: go install github.com/iwdgo/testingfiles
+
+      - name: Install
+        run: go install github.com/iwdgo/largeoutput
 
       - name: Vet
         run: go vet ./*/
-
-      - name: Build
-        run: go build ./*/
 
       - name: Test
         run: |
