@@ -20,11 +20,11 @@ jobs:
           mkdir -p $(go env GOPATH)/bin
           echo $PATH
 
-      - name: Install
-        run: go install github.com/iwdgo/largeoutput
-
       - name: Vet
         run: go vet ./*/
+
+      - name: Install
+        run: go install ./*/
 
       - name: Test
         run: |
@@ -42,5 +42,11 @@ jobs:
           directory: ./coverage/
 
       - name: Benchmark
-        run: go test -bench=. -benchmem  ./*/
+        run: |
+          cd ./binedit
+          go test -bench=.
+          cd ../modulo37
+          go test -bench=.
+          cd ../sumofconverts
+          go test -bench=. -benchmem
 
