@@ -2,10 +2,10 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/iwdgo/largeoutput)](https://goreportcard.com/report/github.com/iwdgo/largeoutput)
 [![codecov](https://codecov.io/gh/iwdgo/largeoutput/branch/master/graph/badge.svg)](https://codecov.io/gh/iwdgo/largeoutput)
 
-[![Build Status](https://app.travis-ci.com/iwdgo/largeoutput.svg?branch=master)](https://travis-ci.com/iwdgo/largeoutput)
+[![Build Status](https://app.travis-ci.com/iwdgo/largeoutput.svg?branch=master)](https://app.travis-ci.com/iwdgo/largeoutput)
 [![Build Status](https://api.cirrus-ci.com/github/iwdgo/largeoutput.svg)](https://cirrus-ci.com/github/iwdgo/largeoutput)
 [![Build status](https://ci.appveyor.com/api/projects/status/eimlas99romrrro0?svg=true)](https://ci.appveyor.com/project/iwdgo/largeoutput)
-![Build status](https://github.com/iwdgo/largeoutput/workflows/Go/badge.svg)
+[![Go](https://github.com/iwdgo/largeoutput/actions/workflows/go.yml/badge.svg)](https://github.com/iwdgo/largeoutput/actions/workflows/go.yml)
 
 # Some ordinary exercises using modules
 
