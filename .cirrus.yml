@@ -4,7 +4,6 @@ container:
 test_task:
   tests_script:
    - go version
-   - go get github.com/iwdgo/testingfiles
    # vet
    - go vet ./*/
    # test
