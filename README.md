@@ -9,11 +9,11 @@
 
 # Some ordinary exercises using modules
 
-- **Binedit** : Produce of a copy of a file named "data.bin" that does not fit in memory, while deleting every seventh byte.
+- **Binedit** : Produce a copy of a file named "data.bin" that does not fit in memory, while deleting every seventh byte.
 
-- **Modulo37** : Output numbers following some rules. The module outputs sequentially the integers from 1 to 99
+- **Modulo37** : Output numbers following some rules. The module outputs sequentially the integers from 1 to 99.
 
-- **Sumofconverts** : Convert a set of strings which contains numbers. It returns the sum of the list items and skips others.
+- **Sumofconverts** : Convert a set of strings which contains numbers. It returns the sum of the items representing numbers and skips others.
 A recursive and non-recursive version are benchmarked.
 
 More documentation in each package.
@@ -30,5 +30,3 @@ returns errors usable by the `testing` package.
 
 The original code for piping output is from the commit history of `golang.go/src/testing/example.go` was using
 unexported routines. It is adapted to these cases.
-
-
