@@ -29,12 +29,9 @@ jobs:
       - name: Test
         run: |
           mkdir coverage
-          cd ./binedit
-          go test -cover -coverprofile=../coverage/binedit.out -covermode=atomic -race
-          cd ../modulo37
-          go test -cover -coverprofile=../coverage/modulo.out -covermode=atomic -race
-          cd ../sumofconverts
-          go test -cover -coverprofile=../coverage/sumofconverts.out -covermode=atomic -race
+          go test -cover -coverprofile=./coverage/binedit.out -covermode=atomic -race ./binedit
+          go test -cover -coverprofile=./coverage/modulo.out -covermode=atomic -race ./modulo37
+          go test -cover -coverprofile=./coverage/sumofconverts.out -covermode=atomic -race ./sumofconverts
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
@@ -43,10 +40,7 @@ jobs:
 
       - name: Benchmark
         run: |
-          cd ./binedit
-          go test -bench=.
-          cd ../modulo37
-          go test -bench=.
-          cd ../sumofconverts
-          go test -bench=. -benchmem
+          go test -bench=. -benchmem ./binedit
+          go test -bench=. -benchmem ./modulo37
+          go test -bench=. -benchmem ./sumofconverts
 
