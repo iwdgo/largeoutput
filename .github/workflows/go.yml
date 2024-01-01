@@ -29,14 +29,12 @@ jobs:
       - name: Test
         run: |
           mkdir coverage
-          go test -cover -coverprofile=./coverage/binedit.out -covermode=atomic -race ./binedit
-          go test -cover -coverprofile=./coverage/modulo.out -covermode=atomic -race ./modulo37
-          go test -cover -coverprofile=./coverage/sumofconverts.out -covermode=atomic -race ./sumofconverts
+          go test -cover -coverprofile=coverage.out -covermode=atomic -race ./*/
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          directory: ./coverage/
+          files: ./coverage.out
 
       - name: Benchmark
         run: |
