@@ -40,7 +40,4 @@ jobs:
 
       - name: Benchmark
         run: |
-          go test -bench=. -benchmem ./binedit
-          go test -bench=. -benchmem ./modulo37
-          go test -bench=. -benchmem ./sumofconverts
-
+          go test -bench=. -benchmem ./*/
