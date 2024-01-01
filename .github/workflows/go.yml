@@ -28,7 +28,6 @@ jobs:
 
       - name: Test
         run: |
-          mkdir coverage
           go test -cover -coverprofile=coverage.out -covermode=atomic -race ./*/
 
       - name: Upload coverage to Codecov
